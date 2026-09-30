@@ -1,10 +1,10 @@
 # Your Local AI app
 
-**Your Local AI** is an Android 6.0+ (API 23+) application engineered to do the impossible: execute compact **270M parameter LLMs** locally on **legacy 32-bit ARM architectures**. 
+**Your Local AI** is an Android 6.0+ (API 23+) application engineered to do the impossible (or is it ?): execute compact **270M parameter LLMs** locally on **legacy 32-bit ARM architectures**. 
 
-The goal? Push hardware and software optimization to its absolute limits to bring on-device AI to extreme, low-spec configurations—theoretically running on hardware as old as the legendary **Samsung Galaxy S2**. 
+The goal? Push hardware and software optimization to its absolute limits to bring on-device AI to extreme, low-spec configurations. theoretically running on hardware as old as the legendary **Samsung Galaxy S2**. 
 
-No cloud, no API keys, no fluff. Just raw, close-to-the-metal optimization.
+No cloud, no API keys. Just raw, close-to-the-metal optimization.
 
 ---
 
@@ -28,5 +28,4 @@ While running a language model on a 32-bit legacy device sounds like a pipe drea
 
 ## 🚀 Getting Started
 
-If you wish to fork my base project and improve it, feel free so!
-
+If you wish to fork my base project and improve it, feel free so! Also, you will require updating the MainActivity.kt in initLLMAsync section in order to use a custom AI model of ur choice
