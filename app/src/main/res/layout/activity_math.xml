@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="#0B0F19">
+
+    <!-- Top Action Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#1E293B"
+        android:gravity="center_vertical"
+        android:padding="8dp">
+
+        <Button
+            android:id="@+id/btnBackToChat"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="&lt; Chat"
+            android:textColor="#F1F5F9"
+            android:textSize="12sp"
+            android:background="#334155"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Advanced Math &amp; Algebra Solver"
+            android:textColor="#34D399"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Display & Result Area -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="#1E293B"
+        android:layout_margin="12dp">
+
+        <EditText
+            android:id="@+id/etMathInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Type expression (e.g. a*x^2 + b*x + c)"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#94A3B8"
+            android:textSize="16sp"
+            android:background="@drawable/bg_input_box"
+            android:padding="12dp"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/tvMathResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="12dp"
+            android:text="Result: "
+            android:textColor="#34D399"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Virtual Math Keyboard -->
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:columnCount="5"
+        android:rowCount="7"
+        android:padding="8dp"
+        android:alignmentMode="alignMargins"
+        android:columnOrderPreserved="false">
+
+        <!-- Row 1: Variables a, b, c, x, y -->
+        <Button android:id="@+id/btnA" android:text="a" style="@style/MathKeyButton" android:background="#3B82F6"/>
+        <Button android:id="@+id/btnB" android:text="b" style="@style/MathKeyButton" android:background="#3B82F6"/>
+        <Button android:id="@+id/btnC_var" android:text="c" style="@style/MathKeyButton" android:background="#3B82F6"/>
+        <Button android:id="@+id/btnX" android:text="x" style="@style/MathKeyButton" android:background="#3B82F6"/>
+        <Button android:id="@+id/btnY" android:text="y" style="@style/MathKeyButton" android:background="#3B82F6"/>
+
+        <!-- Row 2: Powers, Root, Pi -->
+        <Button android:id="@+id/btnSquare" android:text="²" style="@style/MathKeyButton" android:background="#475569"/>
+        <Button android:id="@+id/btnCube" android:text="³" style="@style/MathKeyButton" android:background="#475569"/>
+        <Button android:id="@+id/btnSqrt" android:text="√" style="@style/MathKeyButton" android:background="#475569"/>
+        <Button android:id="@+id/btnPower" android:text="^" style="@style/MathKeyButton" android:background="#475569"/>
+        <Button android:id="@+id/btnPi" android:text="π" style="@style/MathKeyButton" android:background="#475569"/>
+
+        <!-- Row 3: Parentheses & Operators -->
+        <Button android:id="@+id/btnOpenParen" android:text="(" style="@style/MathKeyButton"/>
+        <Button android:id="@+id/btnCloseParen" android:text=")" style="@style/MathKeyButton"/>
+        <Button android:id="@+id/btnDivide" android:text="/" style="@style/MathKeyButton"/>
+        <Button android:id="@+id/btnMultiply" android:text="*" style="@style/MathKeyButton"/>
+        <Button android:id="@+id/btnClearMath" android:text="C" style="@style/MathKeyButton" android:background="#DC2626"/>
+
+        <!-- Row 4: 7 8 9 - Backspace -->
+        <Button android:id="@+id/btn7" android:text="7" style="@style/MathKeyButton"/>
+        <Button android:id="@+id/btn8" android:text="8" style="@style/MathKeyButton"/>
+        <Button android:id="@+id/btn9" android:text="9" style="@style/MathKeyButton"/>
+        <Button android:id="@+id/btnMinus" android:text="-" style="@style/MathKeyButton"/>
+        <Button android:id="@+id/btnBackspace" android:text="⌫" style="@style/MathKeyButton" android:background="#B91C1C"/>
+
+        <!-- Row 5: 4 5 6 + = -->
+        <Button android:id="@+id/btn4" android:text="4" style="@style/MathKeyButton"/>
+        <Button android:id="@+id/btn5" android:text="5" style="@style/MathKeyButton"/>
+        <Button android:id="@+id/btn6" android:text="6" style="@style/MathKeyButton"/>
+        <Button android:id="@+id/btnPlus" android:text="+" style="@style/MathKeyButton"/>
+        <Button android:id="@+id/btnEquals" android:text="=" style="@style/MathKeyButton" android:background="#2563EB"/>
+
+        <!-- Row 6: 1 2 3 . Solve -->
+        <Button android:id="@+id/btn1" android:text="1" style="@style/MathKeyButton"/>
+        <Button android:id="@+id/btn2" android:text="2" style="@style/MathKeyButton"/>
+        <Button android:id="@+id/btn3" android:text="3" style="@style/MathKeyButton"/>
+        <Button android:id="@+id/btnDot" android:text="." style="@style/MathKeyButton"/>
+        <Button android:id="@+id/btnSolve" android:text="SOLVE" style="@style/MathKeyButton" android:background="#059669"/>
+
+        <!-- Row 7: 0 (span) -->
+        <Button android:id="@+id/btn0" android:text="0" style="@style/MathKeyButton" android:layout_columnSpan="5"/>
+
+    </GridLayout>
+
+</LinearLayout>

@@ -26,6 +26,7 @@ class LLMManager(private val context: Context) {
     }
 
     private external fun initNative(path: String): Boolean
+    private external fun freeNative()
     private external fun generateStreamNative(prompt: String, callback: TokenCallback)
 
     /**
@@ -46,6 +47,13 @@ class LLMManager(private val context: Context) {
 
         // Initialisation C++ avec use_mmap = false pour préserver la RAM
         initNative(targetFile.absolutePath)
+    }
+
+    /**
+     * Décharge complètement le modèle de la RAM pour libérer ~278 Mo (lors du passage à l'écran Math).
+     */
+    suspend fun freeModel() = withContext(Dispatchers.IO) {
+        freeNative()
     }
 
     /**

@@ -37,6 +37,18 @@
             android:focusable="true" />
 
         <Button
+            android:id="@+id/btnMath"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginEnd="6dp"
+            android:background="#334155"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Math"
+            android:textColor="#F1F5F9"
+            android:textSize="12sp" />
+
+        <Button
             android:id="@+id/btnSettings"
             android:layout_width="wrap_content"
             android:layout_height="36dp"

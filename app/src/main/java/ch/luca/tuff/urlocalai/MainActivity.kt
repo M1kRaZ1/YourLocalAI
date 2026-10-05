@@ -1,6 +1,6 @@
 package ch.luca.tuff.urlocalai
 
-import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 
 /**
  * Main local chat activity for Android 6.0 (API 23) with native chat bubbles,
- * Send-button Easter egg, and Theme Switcher.
+ * Send-button Easter egg, Theme Switcher, and Math Activity RAM management.
  */
 class MainActivity : AppCompatActivity() {
 
@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnSend: Button
     private lateinit var btnClear: Button
     private lateinit var btnSettings: Button
+    private lateinit var btnMath: Button
 
     private lateinit var llmManager: LLMManager
 
@@ -63,6 +64,7 @@ class MainActivity : AppCompatActivity() {
         btnSend = findViewById(R.id.btnSend)
         btnClear = findViewById(R.id.btnClear)
         btnSettings = findViewById(R.id.btnSettings)
+        btnMath = findViewById(R.id.btnMath)
 
         llmManager = LLMManager(this)
 
@@ -87,6 +89,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // Open Math Panel and unload LLM to free ~278 MB RAM
+        btnMath.setOnClickListener {
+            lifecycleScope.launch {
+                tvStatus.text = if (isFrench) "Déchargement RAM..." else "Unloading RAM..."
+                llmManager.freeModel()
+                isModelLoaded = false
+                startActivity(Intent(this@MainActivity, MathActivity::class.java))
+            }
+        }
+
         // Theme settings dialog
         btnSettings.setOnClickListener {
             showThemeSelectionDialog()
@@ -98,11 +110,6 @@ class MainActivity : AppCompatActivity() {
             val toastMsg = if (isFrench) "Historique effacé !" else "Chat cleared!"
             Toast.makeText(this, toastMsg, Toast.LENGTH_SHORT).show()
         }
-
-        updateLanguageUI()
-
-        // Async initialization
-        initLLMAsync()
 
         // Send button click listener + Easter Egg 2 (10 rapid taps on SEND switches language)
         btnSend.setOnClickListener {
@@ -122,9 +129,19 @@ class MainActivity : AppCompatActivity() {
 
             val userPrompt = etInput.text.toString().trim()
             if (userPrompt.isNotEmpty()) {
-                sendTapCount = 0 // reset easter egg counter when actually sending message
+                sendTapCount = 0
                 sendMessage(userPrompt)
             }
+        }
+
+        updateLanguageUI()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Reload LLM into RAM when returning from MathActivity
+        if (!isModelLoaded) {
+            initLLMAsync()
         }
     }
 
@@ -183,6 +200,7 @@ class MainActivity : AppCompatActivity() {
         btnSend.setBackgroundColor(sendColor)
         btnClear.setBackgroundColor(Color.parseColor("#334155"))
         btnSettings.setBackgroundColor(Color.parseColor("#334155"))
+        btnMath.setBackgroundColor(Color.parseColor("#334155"))
     }
 
     /**
@@ -193,6 +211,7 @@ class MainActivity : AppCompatActivity() {
             btnSend.text = "Envoyer"
             btnClear.text = "Effacer"
             btnSettings.text = "Thème"
+            btnMath.text = "Maths"
             etInput.hint = "Tapez votre message..."
             if (isGenerating) {
                 tvStatus.text = "Statut : Génération en cours..."
@@ -205,6 +224,7 @@ class MainActivity : AppCompatActivity() {
             btnSend.text = "Send"
             btnClear.text = "Clear"
             btnSettings.text = "Theme"
+            btnMath.text = "Math"
             etInput.hint = "Type your message..."
             if (isGenerating) {
                 tvStatus.text = "Status: Generating response..."

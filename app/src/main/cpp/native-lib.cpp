@@ -43,6 +43,19 @@ Java_ch_luca_tuff_urlocalai_LLMManager_initNative(JNIEnv *env, jobject thiz, jst
 }
 
 extern "C" JNIEXPORT void JNICALL
+Java_ch_luca_tuff_urlocalai_LLMManager_freeNative(JNIEnv *env, jobject thiz) {
+    if (g_ctx) {
+        llama_free(g_ctx);
+        g_ctx = nullptr;
+    }
+    if (g_model) {
+        llama_model_free(g_model);
+        g_model = nullptr;
+    }
+    LOGI("Modèle déchargé de la RAM avec succès (libération ~278 Mo).");
+}
+
+extern "C" JNIEXPORT void JNICALL
 Java_ch_luca_tuff_urlocalai_LLMManager_generateStreamNative(JNIEnv *env, jobject thiz, jstring prompt_str, jobject callback) {
     if (!g_ctx || !g_model) return;
 
