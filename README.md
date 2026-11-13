@@ -8,7 +8,7 @@ No cloud, no API keys. Just raw, close-to-the-metal optimization.
 
 ---
 
-## The Breakthrough: Gemma 4 E2B
+## The Breakthrough: Gemma 3 720M
 While running a language model on a 32-bit legacy device sounds like a pipe dream due to severe RAM bottlenecks (Galaxy S2 maxes out at 1GB RAM total), this project successfully loads and runs **Gemma 3 270M**. 
 
 * **ARM NEON Acceleration:** Uses hand-optimized ARMv7 NEON assembly instructions to accelerate matrix multiplication directly on the CPU.
