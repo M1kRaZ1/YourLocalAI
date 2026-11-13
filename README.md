@@ -9,7 +9,7 @@ No cloud, no API keys. Just raw, close-to-the-metal optimization.
 ---
 
 ## The Breakthrough: Gemma 4 E2B
-While running a language model on a 32-bit legacy device sounds like a pipe dream due to severe RAM bottlenecks (Galaxy S2 maxes out at 1GB RAM total), this project successfully loads and runs **Gemma 4 E2B**. 
+While running a language model on a 32-bit legacy device sounds like a pipe dream due to severe RAM bottlenecks (Galaxy S2 maxes out at 1GB RAM total), this project successfully loads and runs **Gemma 3 270M**. 
 
 * **ARM NEON Acceleration:** Uses hand-optimized ARMv7 NEON assembly instructions to accelerate matrix multiplication directly on the CPU.
 * **Aggressive Memory Mapping:** Uses `mmap` to stream the model weight allocations straight from the storage without blowing up the physical RAM.
@@ -21,7 +21,7 @@ While running a language model on a 32-bit legacy device sounds like a pipe drea
 
 * **Minimum OS:** Android 6.0 Marshmallow (API 23)
 * **Architecture:** `armeabi-v7a` (32-bit ARM v7 with NEON support). **x86 CPUs are also supported** for compatibility with older Intel Atom devices and emulators.
-* **Target Model:** Gemma 4 E2B (Q4_K_M)
+* **Target Model:** Gemma 3 720M (Q8_K_M)
 * **Core Engine:** Custom C++ inference engine compiled via Android NDK
 
 ---
